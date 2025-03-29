@@ -46,12 +46,21 @@
   flex-direction: column;
   padding: 14px;
   gap: 30px;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .movie-back-info{
   display: flex;
   flex-direction: column;
   gap: 5px;
+}
+
+.movie-synopsis {
+  width: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 17ch;
 }
 
 .movie-overlay {
@@ -140,6 +149,27 @@
   font-size: 0.9rem;
   margin-top: auto;
 }
+
+.movie-details-btn {
+  display: block;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  background: #4B9830;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.movie-details-btn:hover {
+  background: white;
+  color: #4B9830;
+}
+
 
 @media (max-width: 768px) {
   .movie-card {

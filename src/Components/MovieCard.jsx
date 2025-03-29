@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useMovieContext } from "../Context/MovieContext.jsx";
+import { Link } from "react-router-dom";
 import "../Css/MovieCard.css";
 
 function MovieCard({ movie }) {
@@ -32,9 +33,6 @@ function MovieCard({ movie }) {
                         }}
                     >
                          {isFavorite(movie.id) ? "❤︎" : "♡"}
-
-
-
                     </button>
                     </div>
                     <div className="movie-info">
@@ -47,7 +45,10 @@ function MovieCard({ movie }) {
                 // Expanded View (Title, Synopsis, Genre, Rating, Age Rating)
                 <div className="movie-card-back">
                     <h3 className="movie-title">{movie.title}</h3>
-                    <p className="movie-synopsis">{movie.overview || "No synopsis available."}</p>
+                    <p className="movie-synopsis">{movie.overview.length > 20 
+                        ? `${movie.overview.split(" ").slice(0, 20).join(" ")}...` 
+                        : movie.overview
+                    }</p>
                     <div className="movie-back-info">
                         <p className="movie-genre">Genre: {movie.genre_ids?.join(", ") || "N/A"}</p>
                         <p className="movie-rating">Review: {movie.vote_average.toFixed(1)} ⭐</p>
@@ -55,13 +56,15 @@ function MovieCard({ movie }) {
                     </div>
                 </div>
             )}
+             {/* 🔹 New Movie Details Button */}
+             <Link to={`/movie/${movie.id}`} className="movie-details-btn">
+            View Reviews
+            </Link>
         </div>
     );
+    
 
-            {/* 🔹 New Movie Details Button */}
-            <Link to={`/movie/${movie.id}`} className="movie-details-btn">
-            View Details
-            </Link>
+           
 
 }
 
