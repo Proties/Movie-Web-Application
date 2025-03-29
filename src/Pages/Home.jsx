@@ -104,18 +104,4 @@ function Home() {
     );
 }
 
-/** REUSABLE MOVIE SECTION COMPONENT */
-// function MovieSection({ title, movies }) {
-//     return (
-//         <div className="movie-section">
-//             <h2 className="section-title">{title}</h2>
-//             <div className="movies-grid">
-//                 {movies.map((movie) => (
-//                     <MovieCard movie={movie} key={movie.id} />
-//                 ))}
-//             </div>
-//         </div>
-//     );
-// }
-
 export default Home;

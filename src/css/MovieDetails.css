@@ -1,0 +1,30 @@
+.movie-details {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 30px;
+}
+
+.movie-details-image {
+    width: 300px;
+    border-radius: 10px;
+}
+
+.movie-details-info {
+    max-width: 600px;
+}
+
+.movie-details-info h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.release-date, .rating {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.overview {
+    font-size: 16px;
+    line-height: 1.5;
+}
