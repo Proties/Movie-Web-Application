@@ -31,7 +31,10 @@ function MovieCard({ movie }) {
                             isFavorite(movie.id) ? removeFromFavorites(movie.id) : addToFavorites(movie);
                         }}
                     >
-                        {isFavorite(movie.id) ? "❤️" : "♡"}
+                         {isFavorite(movie.id) ? "❤︎" : "♡"}
+
+
+
                     </button>
                     </div>
                     <div className="movie-info">
@@ -54,6 +57,12 @@ function MovieCard({ movie }) {
             )}
         </div>
     );
+
+            {/* 🔹 New Movie Details Button */}
+            <Link to={`/movie/${movie.id}`} className="movie-details-btn">
+            View Details
+            </Link>
+
 }
 
 export default MovieCard;

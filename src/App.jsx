@@ -2,7 +2,7 @@ import './Css/App.css'
 import Favorites from './Pages/Favorites'
 import Home from './Pages/Home'
 import {Routes, Route} from 'react-router-dom'
-import {MovieProvider} from './context/MovieContext'
+import {MovieProvider} from './Context/MovieContext' 
 import NavBar from './Components/NavBar'
 
 function App() {

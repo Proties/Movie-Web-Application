@@ -45,6 +45,21 @@ function Home(){
     };
 
     return <div className="home">
+        <div className="home-description">
+            <div className="left-container">
+                
+            </div>
+            <div className="center-container">
+                <h1 className="description-header">Welcome to Movie List 🎬</h1>
+                    <p className="description">
+                        Discover popular and trending movies. Use the search bar below to find your 
+                        favorite movies and explore details. Stay entertained! 🍿
+                    </p>
+            </div>
+            <div className="right-container">
+
+            </div>
+        </div>
         <form onSubmit={handleSearch} className="search-form">
             <input
                 type="text"
@@ -60,13 +75,13 @@ function Home(){
         { error && <div className="error-message">{error}</div>}
 
         {loading ? <div className="loading">Loading...</div> : <div className="movies-grid">
-            {movies.map(movie => (
-                movie.title.toLowerCase().startsWith(searchQuery) &&
-                <MovieCard movie={movie} key={movie.id}/>
-                ))}
+            {movies.filter(movie => movie.title.toLowerCase().includes(searchQuery.toLowerCase()))
+  .map(movie => <MovieCard movie={movie} key={movie.id} />)}
                         
         </div>}
     </div>
+
+
 }
 
 export default Home

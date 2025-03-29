@@ -91,11 +91,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
   transition: background-color 0.2s;
 }
 
 .favorite-btn:hover {
   background-color: rgba(0, 0, 0, 0.8);
+}
+
+.favorite-btn.favorited {
+  color: #4B9830; /* Green color when favorited */
 }
 
 .favorite-btn.active {
