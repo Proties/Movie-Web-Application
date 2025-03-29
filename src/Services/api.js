@@ -86,5 +86,35 @@ export const getMovieDetails = async (movieId) => {
     }
 };
 
+export const getMovieTrailers = async (movieId) => {
+    try {
+        const response = await fetch(
+            `${BASE_URL}/movie/${movieId}/videos?api_key=${API_KEY}`
+        );
+        if (!response.ok) throw new Error(`Failed to fetch movie trailers: ${response.status}`);
+
+        const data = await response.json();
+        return data.results.filter(video => video.type === "Trailer" && video.site === "YouTube");
+    } catch (error) {
+        console.error("Error fetching movie trailers:", error.message);
+        return [];
+    }
+};
+
+export const getMovieCast = async (movieId) => {
+    try {
+        const response = await fetch(
+            `${BASE_URL}/movie/${movieId}/credits?api_key=${API_KEY}`
+        );
+        if (!response.ok) throw new Error(`Failed to fetch movie cast: ${response.status}`);
+
+        const data = await response.json();
+        return data.cast.slice(0, 10); // Get only the first 10 cast members
+    } catch (error) {
+        console.error("Error fetching movie cast:", error.message);
+        return [];
+    }
+};
+
 
 "sahanimedb" 
