@@ -79,11 +79,11 @@
   font-size: 17px;
   padding: 0.5rem 1rem;
   border-radius: 4px;
-  transition: background-color 0.2s;
+  transition: transform 0.3s ease-in-out;
 }
 
 .nav-link:hover {
-  transition: all .2s linear;
+  transform: scale(1.1); /* Makes the link grow */
 }
 
 

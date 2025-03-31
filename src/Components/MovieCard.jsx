@@ -36,10 +36,7 @@ function MovieCard({ movie }) {
                     </button>
                     </div>
                     <div className="movie-info">
-                <h3 className="movie-title">{movie.title.length > 4
-                        ? `${movie.title.split(" ").slice(0, 4).join(" ")}...` 
-                        : movie.title
-                    }</h3>
+                <h3 className="movie-title">{movie.title}</h3>
                 <p className="movie-year">{new Date(movie.release_date).getFullYear()}</p>
                 </div>
                 </div>

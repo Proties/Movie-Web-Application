@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import MovieCard from "./MovieCard";  // Ensure correct import path
+import "../Css/MovieSection.css";
 
 function MovieSection({ title, movies }) {
     const scrollRef = useRef(null);
@@ -7,7 +8,18 @@ function MovieSection({ title, movies }) {
     // Scroll Function
     const scroll = (direction) => {
         if (scrollRef.current) {
-            const scrollAmount = 220 * 6; // Scroll by width of 6 movie cards
+            let scrollAmount;
+    
+            if (window.innerWidth <= 412) {
+                scrollAmount = 220 * 1 // Scroll by 1 movie card
+            } else if (window.innerWidth <= 600) {
+                scrollAmount = 220 * 2; // Scroll by 3 movie cards
+            } else if (window.innerWidth <= 810) {
+                scrollAmount = 220 * 3; // Scroll by 3 movie cards
+            } else {
+                scrollAmount = 220 * 6; // Scroll by 6 movie cards
+            }
+
             scrollRef.current.scrollBy({
                 left: direction === "left" ? -scrollAmount : scrollAmount,
                 behavior: "smooth",

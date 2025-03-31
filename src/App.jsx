@@ -1,5 +1,5 @@
 import './Css/App.css'
-import Favorites from './Pages/Favorites'
+import Profile from './Pages/Profile'
 import Home from './Pages/Home'
 import MovieDetails from './Pages/MovieDetails';
 import {Routes, Route} from 'react-router-dom'
@@ -14,7 +14,7 @@ function App() {
       <main className="main-content">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/Favorites" element={<Favorites />} />
+          <Route path="/Profile" element={<Profile />} />
           <Route path="/movie/:id" element={<MovieDetails />} />
         </Routes>
       </main>

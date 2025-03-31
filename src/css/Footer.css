@@ -5,6 +5,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    margin-top: 30px;
 }
 
 .socials-container {
@@ -17,12 +18,18 @@
   border-color: #4B9830;
   border-radius: 10px 95px;
   border-width: 3px;
-  width: 50%;
+  width: 90%;
 }
 
 .social-icon {
-    width: 60px;
+    width: 3vw;
     margin: 10px;
+    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+}
+
+.social-icon:hover, .social-icon:focus {
+  transform: scale(1.2); /* Grow effect */
+  filter: brightness(50);
 }
 
 
@@ -55,4 +62,18 @@
 .icon{
     width: 240px; /* Adjust the width */
   height: auto;
+}
+
+
+@media (max-width: 810px) {
+  .social-icon {
+    width: 6vw;
+    margin: 10px;
+    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+}
+
+.social-icon:hover, .social-icon:focus {
+  transform: scale(1.2); /* Grow effect */
+  filter: brightness(50);
+}
 }

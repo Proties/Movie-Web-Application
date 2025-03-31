@@ -1,5 +1,5 @@
 import {createContext, useState, useContext, useEffect} from "react"
-import Favorites from "../Pages/Favorites"
+import Favorites from "../Pages/Profile"
 
 const MovieContext = createContext()
 

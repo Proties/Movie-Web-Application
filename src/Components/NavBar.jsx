@@ -19,7 +19,7 @@ function NavBar() {
                 <div className="gridcenter">
                     <div className="navbar-links">
                         <Link to="/" className="nav-link">Movie List</Link>
-                        <Link to="/favorites" className="nav-link">Favorites</Link>
+                        <Link to="/profile" className="nav-link">Profile</Link>
                     </div>
 
                 </div>
