@@ -123,6 +123,29 @@
   }
 }
 
+@media (min-width: 600px) {
+
+  .description-header {
+    font-size: 3rem;
+    line-height: 1.1;
+    width: 32rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .description {
+    width: 25rem;
+  }
+
+  .left-container {
+    display: none;
+  }
+
+  .right-container {
+    display: none;
+  }
+}
+
 
 @media (max-width: 639px) {
   .home {
@@ -131,5 +154,18 @@
 
   .search-form {
     margin-bottom: 1rem;
+    width: 75vw;
+  }
+}
+
+@media (max-width: 412px) {
+
+
+  .description-header {
+    width: 19rem;
+  }
+
+  .description {
+    width: 21rem;
   }
 }
