@@ -92,7 +92,7 @@ function Home() {
             {loading ? (
                 <div className="loading">Loading...</div>
             ) : (
-                <div>
+                <div className="movie-section-container">
                     {/* MOVIE SECTIONS */}
                     <MovieSection title="Movies in Theaters" movies={moviesInTheaters} />
                     <MovieSection title="Latest in Streaming" movies={latestStreaming} />
