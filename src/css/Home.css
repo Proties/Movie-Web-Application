@@ -162,10 +162,28 @@
 
 
   .description-header {
-    width: 19rem;
+    width: 24rem;
   }
 
   .description {
     width: 21rem;
+  }
+}
+
+
+@media (max-width: 360px) {
+
+
+  .description-header {
+    width: 21rem;
+  }
+
+  .description {
+    width: 21rem;
+  }
+
+  .search-form {
+    margin-bottom: 1rem;
+    width: 98vw;
   }
 }

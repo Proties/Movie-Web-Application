@@ -1,34 +1,87 @@
 /* MovieDetails.css */
 
 .movie-details {
-    max-width: 900px;
-    margin: auto;
-    padding: 20px;
-    background: #1c1c1c;
+    background: black;
     color: white;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
 /* Trailer Section */
 .trailer-section {
     text-align: center;
-    margin-bottom: 20px;
+    background-color: black;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
 }
 
 .trailer-section iframe {
     width: 100%;
-    max-width: 700px;
-    height: 400px;
-    border-radius: 10px;
+    width: 100%;
+    height: 710px;
+    border-radius: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
+
+.trailer-overlay {
+    background: radial-gradient(circle,rgba(17,17,17,.6) 45%,#111 100%);
+    opacity: 0.5;
+    transition: opacity 0.2s;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 100%;
+    display: block flex;
+
+  }
+
+  .trailer-overlay::before{
+    background: radial-gradient(circle,rgba(17,17,17,.6) 45%,#111 100%);
+    opacity: 0.5;
+  }
+
+  .trailer-overlay::after{
+    background: radial-gradient(circle,rgba(17,17,17,.6) 45%,#111 100%);
+    opacity: 1;
+  }
+
+
+  .movie-info-container{
+    display: flex;
+    padding: 25px;
+    flex-direction: row;
+  }
+
+  .Left-movie-info-container{
+    display: flex;
+    padding: 25px;
+    flex-direction: column;
+  }
+
+  .movie-info-right {
+    padding: 215px;
+  }
+
+  .movie-poster {
+    max-height: 85vh;
+    border-radius: 10px;
+    margin-bottom: 30px;
+  }
+
+  .overview {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: inherit;
+  }
 
 /* Movie Actions */
 .movie-actions {
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .movie-actions button {
@@ -49,24 +102,53 @@
 .disliked { background: #dc3545 !important; }
 .favorited { background: #ffc107 !important; color: black; }
 
+
+
 /* Movie Info */
-.movie-info {
+.movie-info-center {
+    display: flex;
+    flex-direction: column;
     text-align: center;
     margin-bottom: 20px;
+    width: 50vw;
+    gap: 35px;
+    padding: 20px;
 }
 
-.movie-info h1 {
+.movie-detail-info-container {
+    display: flex;
+    flex-direction: row;
+    gap: 125px;
+}
+
+.movie-info-center h1 {
     font-size: 2rem;
     margin-bottom: 10px;
+    color: #4B9830;
+    text-align: start;
+    margin-bottom: 30px;
 }
 
-/* .movie-info p {
-    margin: 5px 0;
-} */
+.cast-section h2 {
+    color: #4B9830;
+    Margin-bottom: 40px;
+    text-align: start;
+    margin-top: 40px;
+}
+ 
+.rating-container {
+    text-align: start;
+  display: flex;
+  gap: 30px;
+  margin-bottom: 35px;
+  }
 
 /* Cast Section */
 .cast-section {
     margin-bottom: 20px;
+    border-top-style: solid;
+    border-top-width: thin;
+    color: white;
 }
 
 .cast-list {
@@ -96,12 +178,18 @@
 
 /* Reviews Section */
 .reviews-section {
-    margin-top: 20px;
+    margin-bottom: 20px;
+    border-top-style: solid;
+    border-top-width: thin;
+    color: white;
 }
 
 .reviews-section h2 {
     text-align: center;
     margin-bottom: 15px;
+    text-align: start;
+    margin-bottom: 15px;
+    color: #4B9830;
 }
 
 .reviews-section textarea {
@@ -117,7 +205,7 @@
 .reviews-section button {
     display: block;
     margin: 10px auto;
-    background: #007bff;
+    background: #4B9830;
     color: white;
     border: none;
     padding: 10px 15px;

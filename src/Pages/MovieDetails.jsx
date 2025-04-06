@@ -1,8 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getMovieDetails, getMovieTrailers, getMovieCast } from "../Services/api";
-
 import "../Css/MovieDetails.css";
+import MovieSection from "../Components/MovieSection";
+import { getPopularMovies, getMoviesInTheaters, getLatestStreaming, getComingSoon } from "../Services/api";
+import "../Css/MovieCard.css";
+import FavoriteButton from "../components/FavoriteButton";
+
+
+
 
 function MovieDetails() {
     const { id } = useParams();
@@ -77,10 +83,6 @@ function MovieDetails() {
         if (like) setLike(false);
     };
 
-    const handleFavorite = () => {
-        setFavorite(!favorite);
-    };
-
     const handleReviewSubmit = () => {
         if (newReview.username.trim() && newReview.text.trim()) {
             const review = {
@@ -122,6 +124,7 @@ function MovieDetails() {
             {/* Trailer Section */}
             {trailer && (
                 <div className="trailer-section">
+                 <div className="trailer-overlay">
                     <iframe 
                         width="560" 
                         height="315" 
@@ -130,26 +133,42 @@ function MovieDetails() {
                         frameBorder="0" 
                         allowFullScreen
                     ></iframe>
+                    </div>
+                     {/* Like, Dislike, Favorite Buttons */}
                 </div>
             )}
 
-            {/* Like, Dislike, Favorite Buttons */}
+           <div className="movie-info-container">
+            <div className="Left-movie-info-container">
+            <img 
+                        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} 
+                        alt={movie.title} 
+                        className="movie-poster"
+                    />
             <div className="movie-actions">
-                <button onClick={handleLike} className={like ? "liked" : ""}>👍 Like</button>
+                <button onClick={handleLike} className={like ? "liked" : ""}>
+                    👍 Like</button>
                 <button onClick={handleDislike} className={dislike ? "disliked" : ""}>👎 Dislike</button>
-                <button onClick={handleFavorite} className={favorite ? "favorited" : ""}>⭐ Favorite</button>
+                <FavoriteButton favorite={favorite} onToggleFavorite={handleFavorite} />
             </div>
+            </div>
+    {/* Info Section */}
+    <div className="movie-info-center">
+            <div className="movie-detail-info-container">
+                <div className="h1-contianer">
+                        <h1>{movie.title}</h1>
+                </div>
+                
+                <div className="rating-container">
+                    <p className="release-date">Release Date: {movie.release_date}</p>
+                    <p className="rating">Rating: {movie.vote_average.toFixed(1)} ⭐</p>
+                </div>
+            </div>                
 
-            {/* Info Section */}
-            <div className="movie-info">
-                <h1>{movie.title}</h1>
-                <p className="release-date">Release Date: {movie.release_date}</p>
-                <p className="rating">Rating: {movie.vote_average.toFixed(1)} ⭐</p>
                 <p className="overview">{movie.overview || "No description available."}</p>
-            </div>
 
 
-            {/* Cast Section */}
+                {/* Cast Section */}
             <div className="cast-section">
                 <h2>Cast</h2>
                 <div className="cast-list">
@@ -222,6 +241,18 @@ function MovieDetails() {
                     ))}
                 </ul>
             </div>
+            </div>
+            <div className="movie-info-right">
+            {/* <MovieSection title="Movies in Theaters" movies={moviesInTheaters} /> */}
+            
+            </div>
+
+            
+
+
+           </div>
+
+            
         </div>
     );
 }

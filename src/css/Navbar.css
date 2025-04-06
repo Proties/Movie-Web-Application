@@ -186,3 +186,14 @@
     padding-left: 2rem;
   }
 }
+
+@media (max-width: 360px) {
+  .navbar-logo {
+    width: 175px; /* Adjust the width */
+    height: auto;
+  }
+
+  .description-header {
+    width: 21rem;
+  }
+}

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useMovieContext } from "../context/MovieContext.jsx";
 import { Link } from "react-router-dom";
 import "../Css/MovieCard.css";
+import FavoriteButton from "./FavoriteButton";
 
 function MovieCard({ movie }) {
     const { addToFavorites, removeFromFavorites, isFavorite } = useMovieContext();
@@ -25,15 +26,7 @@ function MovieCard({ movie }) {
                         className="movie-image"
                     />
                     <div className="movie-overlay">
-                    <button
-                        className={`favorite-btn ${isFavorite(movie.id) ? "favorited" : ""}`}
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            isFavorite(movie.id) ? removeFromFavorites(movie.id) : addToFavorites(movie);
-                        }}
-                    >
-                         {isFavorite(movie.id) ? "❤︎" : "♡"}
-                    </button>
+                    <FavoriteButton movie={movie} />
                     </div>
                     <div className="movie-info">
                 <h3 className="movie-title">{movie.title}</h3>
