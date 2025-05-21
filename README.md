@@ -1,12 +1,12 @@
+MOVIELIST WEB APP
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+I created a movie discovery web app using React.js that lets users search for the latest film and streaming releases, read their synopsis and ratings, and even save their favorites for later! 🎬✨ Powered by an open-source API, this app keeps movie lovers up to date with what’s hitting the big screen. But there’s more—
 
-Currently, two official plugins are available:
+Soon, it’ll evolve into a full-fledge review platform, where users can share their thoughts, leave ratings, and spark discussions about their favorite films. Stay tuned for the next blockbuster update! 🍿🚀
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Here is the website where I got the API for the project:
+- https://www.themoviedb.org/
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Here is the YouTube Video that helped me start my project:
+- https://www.youtube.com/watch?v=G6D9cBaLViA&list=PLVaY32qHyARWuU1j-1uYnkEdkK_RSbezI
