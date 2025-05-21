@@ -1,5 +1,5 @@
-MOVIELIST WEB APP
-# React + Vite
+# MOVIELIST WEB APP
+React + Vite
 
 I created a movie discovery web app using React.js that lets users search for the latest film and streaming releases, read their synopsis and ratings, and even save their favorites for later! 🎬✨ Powered by an open-source API, this app keeps movie lovers up to date with what’s hitting the big screen. But there’s more—
 
