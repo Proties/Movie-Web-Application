@@ -1,7 +1,8 @@
 import { useMovieContext } from "../context/MovieContext";
 import "../Css/MovieCard.css"; // reuse styles
+import "../Css/FavoriteButton.css";
 
-function FavoriteButton({ movie, position = "absolute" }) {
+function FavoriteButton({ movie, position = "inherit", variant = "card"  }) {
   const { addToFavorites, removeFromFavorites, isFavorite } = useMovieContext();
   const isFav = isFavorite(movie.id);
 
@@ -12,7 +13,7 @@ function FavoriteButton({ movie, position = "absolute" }) {
 
   return (
     <button
-      className={`favorite-btn ${isFav ? "favorited" : ""}`}
+    className={`favorite-btn ${isFav ? "favorited" : ""} favorite-${variant}`}
       onClick={handleClick}
       style={{ position }}
     >

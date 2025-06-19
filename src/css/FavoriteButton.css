@@ -1,5 +1,4 @@
 .favorite-btn {
-    position: absolute;
     top: 1rem;
     right: 1rem;
     color: white;
@@ -18,6 +17,7 @@
   
   .favorite-btn:hover {
     background-color: rgba(0, 0, 0, 0.8);
+    color: #4B9830;
   }
   
   .favorite-btn.favorited {
@@ -28,6 +28,15 @@
     color: #ff4757;
   }
 
+  .favorite-btn.favorite-details {
+    position: inherit;
+    height: 3.5vh;
+    width: 2vw;
+  }
+
+  .favorite-btn.favorite-card {
+    position: absolute;
+  }
   @media (max-width: 768px) {
     .favorite-btn {
       width: 32px;

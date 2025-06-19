@@ -1,14 +1,24 @@
 import MovieCard from "../Components/MovieCard";
 import MovieSection from "../Components/MovieSection";
 import { useState, useEffect } from "react";
-import { 
-    getPopularMovies, 
-    getMoviesInTheaters, 
-    getLatestStreaming, 
-    getComingSoon 
+import {
+    getPopularMovies,
+    getMoviesInTheaters,
+    getLatestStreaming,
+    getComingSoon,
+    getPopularTVShows,
+    getSciFiFantasyShows,
+    getAnimeShows,
+    getDramaShows,
+    getHorrorShows,
+    getActionAdventureShows,
+    getComedyShows,
+    searchMovies // also needed for the search handler
 } from "../Services/api";
 import "../Css/Home.css";
 import "../Css/MovieCard.css";
+import icon from "../img/icon.png";
+import characters from "../img/kopia.jpg";
 
 function Home() {
     const [searchQuery, setSearchQuery] = useState("");
@@ -18,30 +28,63 @@ function Home() {
     const [comingSoon, setComingSoon] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [tvShows, setTVShows] = useState([]);
+    const [sciFiFantasy, setSciFiFantasy] = useState([]);
+    const [anime, setAnime] = useState([]);
+    const [dramas, setDramas] = useState([]);
+    const [horror, setHorror] = useState([]);
+    const [actionAdventure, setActionAdventure] = useState([]);
+    const [comedies, setComedies] = useState([]);
 
     useEffect(() => {
-        const fetchMovies = async () => {
+        const fetchAllContent = async () => {
             try {
-                const [inTheaters, latest, popular, upcoming] = await Promise.all([
+                const [
+                    inTheaters,
+                    latest,
+                    popular,
+                    upcoming,
+                    tv,
+                    sciFi,
+                    animeShows,
+                    drama,
+                    horrorShows,
+                    action,
+                    comedy
+                ] = await Promise.all([
                     getMoviesInTheaters(),
                     getLatestStreaming(),
                     getPopularMovies(),
-                    getComingSoon()
+                    getComingSoon(),
+                    getPopularTVShows(),
+                    getSciFiFantasyShows(),
+                    getAnimeShows(),
+                    getDramaShows(),
+                    getHorrorShows(),
+                    getActionAdventureShows(),
+                    getComedyShows()
                 ]);
-
+    
                 setMoviesInTheaters(inTheaters);
                 setLatestStreaming(latest);
                 setPopularMovies(popular);
                 setComingSoon(upcoming);
+                setTVShows(tv);
+                setSciFiFantasy(sciFi);
+                setAnime(animeShows);
+                setDramas(drama);
+                setHorror(horrorShows);
+                setActionAdventure(action);
+                setComedies(comedy);
             } catch (err) {
                 console.error(err);
-                setError("Failed to load movies...");
+                setError("Failed to load content...");
             } finally {
                 setLoading(false);
             }
         };
-
-        fetchMovies();
+    
+        fetchAllContent();
     }, []);
 
     const handleSearch = async (e) => {
@@ -64,7 +107,9 @@ function Home() {
     return (
         <div className="home">
             <div className="home-description">
-                <div className="left-container"></div>
+                <div className="left-container">
+                    <img src={icon} alt="Movie App Logo" className="icon" />
+                </div>
                 <div className="center-container">
                     <h1 className="description-header">Welcome to Movie List 🎬</h1>
                     <p className="description">
@@ -72,7 +117,9 @@ function Home() {
                         favorite movies and explore details. Stay entertained! 🍿
                     </p>
                 </div>
-                <div className="right-container"></div>
+                <div className="right-container">
+                <img src={characters} alt="Movie App Logo" className="icon" />
+                </div>
             </div>
 
             {/* SEARCH FORM */}
@@ -95,9 +142,16 @@ function Home() {
                 <div className="movie-section-container">
                     {/* MOVIE SECTIONS */}
                     <MovieSection title="Movies in Theaters" movies={moviesInTheaters} />
+                    <MovieSection title="TV Shows" movies={tvShows} />
+                    <MovieSection title="Sci-fi & Fantasy" movies={sciFiFantasy} />
+                    <MovieSection title="Anime" movies={anime} />
                     <MovieSection title="Latest in Streaming" movies={latestStreaming} />
+                    <MovieSection title="Dramas" movies={dramas} />
                     <MovieSection title="Popular Movies" movies={popularMovies} />
+                    <MovieSection title="Horror" movies={horror} />
                     <MovieSection title="Coming Soon to Theaters" movies={comingSoon} />
+                    <MovieSection title="Action & Adventure" movies={actionAdventure} />
+                    <MovieSection title="Comedies" movies={comedies} />     
                 </div>
             )}
         </div>

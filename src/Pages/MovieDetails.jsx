@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getMovieDetails, getMovieTrailers, getMovieCast } from "../Services/api";
 import "../Css/MovieDetails.css";
-import MovieSection from "../Components/MovieSection";
-import { getPopularMovies, getMoviesInTheaters, getLatestStreaming, getComingSoon } from "../Services/api";
+import { getSimilarMovies } from "../Services/api";
+import MovieCard from "../Components/MovieCard"; // Assuming you have this component
 import "../Css/MovieCard.css";
-import FavoriteButton from "../components/FavoriteButton";
-
-
+import FavoriteButton from "../Components/FavoriteButton";
+import Like from "../img/like.png"
+import Dislike from "../img/dislike.png"
 
 
 function MovieDetails() {
@@ -22,6 +22,10 @@ function MovieDetails() {
     const [favorite, setFavorite] = useState(false);
     const [reviews, setReviews] = useState(() => JSON.parse(localStorage.getItem(`reviews-${id}`)) || []);
     const [newReview, setNewReview] = useState({ username: "", rating: 5, text: "" });
+    const [similarMovies, setSimilarMovies] = useState([]);
+    const [replyText, setReplyText] = useState({});
+    const [showReplyInput, setShowReplyInput] = useState({});
+    const [showReplies, setShowReplies] = useState({});
 
     useEffect(() => {
         const fetchMovieDetails = async () => {
@@ -38,6 +42,7 @@ function MovieDetails() {
 
         fetchMovieDetails();
     }, [id]);
+    
 
         // Fetch trailers separately
         useEffect(() => {
@@ -68,6 +73,18 @@ function MovieDetails() {
             fetchCast();
         }, [id]);
 
+        useEffect(() => {
+            const fetchSimilarMovies = async () => {
+                try {
+                    const data = await getSimilarMovies(id);
+                    setSimilarMovies(data);
+                } catch (err) {
+                    console.error("Error fetching similar movies:", err);
+                }
+            };
+        
+            fetchSimilarMovies();
+        }, [id]);
 
         useEffect(() => {
             localStorage.setItem(`reviews-${id}`, JSON.stringify(reviews));
@@ -134,7 +151,6 @@ function MovieDetails() {
                         allowFullScreen
                     ></iframe>
                     </div>
-                     {/* Like, Dislike, Favorite Buttons */}
                 </div>
             )}
 
@@ -146,10 +162,23 @@ function MovieDetails() {
                         className="movie-poster"
                     />
             <div className="movie-actions">
-                <button onClick={handleLike} className={like ? "liked" : ""}>
-                    👍 Like</button>
-                <button onClick={handleDislike} className={dislike ? "disliked" : ""}>👎 Dislike</button>
-                <FavoriteButton favorite={favorite} onToggleFavorite={handleFavorite} />
+            <button 
+                onClick={handleLike} 
+                className={`like ${like ? "liked" : ""}`}
+                aria-label="Like"
+            >
+                <img src={Like} alt="Like" />
+            </button>
+            <button 
+                onClick={handleDislike} 
+                className={`dislike ${dislike ? "disliked" : ""}`}
+                aria-label="Dislike"
+            >
+                <img src={Dislike} alt="Dislike" />
+            </button>
+                <div className="MovieDetails-favorite-btn">
+                    <FavoriteButton movie={movie} variant="details"/>
+                </div>
             </div>
             </div>
     {/* Info Section */}
@@ -190,69 +219,184 @@ function MovieDetails() {
 
             {/* Reviews Section */}
             <div className="reviews-section">
-                <h2>Reviews</h2>
-                <input 
-                    type="text" 
-                    placeholder="Your Name" 
-                    value={newReview.username} 
-                    onChange={(e) => setNewReview({ ...newReview, username: e.target.value })} 
-                />
-                <select 
-                    value={newReview.rating} 
-                    onChange={(e) => setNewReview({ ...newReview, rating: parseInt(e.target.value) })}
-                >
-                    {[1, 2, 3, 4, 5].map(num => (
-                        <option key={num} value={num}>{num} ⭐</option>
-                    ))}
-                </select>
-                <textarea 
-                    placeholder="Leave a review..." 
-                    value={newReview.text} 
-                    onChange={(e) => setNewReview({ ...newReview, text: e.target.value })}
-                ></textarea>
-                <button onClick={handleReviewSubmit}>Submit Review</button>
-                <ul>
-                    {reviews.map(review => (
-                        <li key={review.id}>
-                            <p><strong>{review.username}</strong> ({review.rating} ⭐)</p>
-                            <p>{review.text}</p>
-                            <small>{review.date}</small>
-                            <button onClick={() => handleLikeReview(review.id)}>👍 {review.likes}</button>
-                            <button onClick={() => handleDislikeReview(review.id)}>👎 {review.dislikes}</button>
-                            <input 
-                                type="text" 
-                                placeholder="Reply..." 
-                                onKeyDown={(e) => {
-                                    if (e.key === "Enter" && e.target.value.trim()) {
-                                        handleReply(review.id, e.target.value);
-                                        e.target.value = "";
-                                    }
-                                }}
-                            />
-                            <ul>
-                                {review.replies.map(reply => (
-                                    <li key={reply.id}>
-                                        <p>{reply.text}</p>
-                                        <small>{reply.date}</small>
-                                    </li>
-                                ))}
-                            </ul>
-                        </li>
-                    ))}
-                </ul>
+    <h2>Reviews</h2>
+    <div className="reviews-container">
+        {/* Left Side - Displaying Reviews */}
+        <div className="existing-reviews">
+        {reviews.length === 0 ? (
+    <p className="no-reviews">No reviews left on this page.</p>
+) : (
+    <>
+        <p className="review-count">{reviews.length} Reviews On {movie.title}</p>
+        {reviews.map((review) => (
+            <div className="review-container">
+                <div key={review.id} className="review-card">
+                <div className="review-details-container">
+                <div className="User-gravatar-container">
+                    <img
+                        src={`https://www.gravatar.com/avatar/${btoa(
+                            review.username
+                        )}?d=identicon`}
+                        alt="Gravatar"
+                        className="gravatar"
+                    />
+                </div>
+                
+                <div className="review-info">
+                <div className="review-details">
+                        <h2>{review.username}</h2>
+                        <small>{review.date}</small>
+                    </div>
+
+                <p className="review-text">{review.text}</p>
+
+                <div className="review-actions">
+                    <div className="like-dislike-btn-containter">
+                        <button onClick={() => handleLikeReview(review.id)}
+                        className={`like ${like ? "liked" : ""}`}
+                        aria-label="Like"
+                            >
+                        <img src={Like} alt="Like" /> {review.likes}
+                        </button>
+
+                        <button onClick={() => handleDislikeReview(review.id)}
+                            className={`dislike ${dislike ? "disliked" : ""}`}
+                            aria-label="Dislike"
+                            >
+                        <img src={Dislike} alt="Dislike" /> {review.dislikes}
+                        </button>
+                    </div>
+                    <div className="reply-btn-container">
+                    <button
+                        onClick={() =>
+                            setShowReplyInput((prev) => ({
+                                ...prev,
+                                [review.id]: !prev[review.id],
+                            }))
+                        }
+                    >
+                        Reply
+                    </button>
+                    <button
+                        onClick={() =>
+                            setShowReplies((prev) => ({
+                                ...prev,
+                                [review.id]: !prev[review.id],
+                            }))
+                        }
+                    >
+                        {showReplies[review.id] ? "Hide Replies" : "Show Replies"}
+                    </button>
+                    </div>                    
+                </div>
+                </div>
+                </div>
+
+                {/* Replies */}
+                {showReplies[review.id] && review.replies.length > 0 && (
+                    <div className="replies">
+                        <div className="User-gravatar-container">
+                    <img
+                        src={`https://www.gravatar.com/avatar/${btoa(
+                            review.username
+                        )}?d=identicon`}
+                        alt="Gravatar"
+                        className="gravatar"
+                    />
+                </div>
+                        {review.replies.map((reply) => (
+                            <div key={reply.id} className="reply">
+                                <h2>{reply.text}</h2>
+                                <small>{reply.date}</small>
+                                <p className="review-text">{review.text}</p>
+
+                        <div className="review-actions">
+                            <div className="like-dislike-btn-containter">
+                                <button onClick={() => handleLikeReview(review.id)}
+                                className={`like ${like ? "liked" : ""}`}
+                                aria-label="Like"
+                                    >
+                                <img src={Like} alt="Like" /> {review.likes}
+                                </button>
+
+                                <button onClick={() => handleDislikeReview(review.id)}
+                                    className={`dislike ${dislike ? "disliked" : ""}`}
+                                    aria-label="Dislike"
+                                    >
+                                <img src={Dislike} alt="Dislike" /> {review.dislikes}
+                                </button>
+                            </div>                 
+                        </div>
+
+
+
+
+
+                            </div>
+                        ))}                       
+                    </div>
+                )}
+
+
             </div>
+            <div className="reply-container">
+                {/* Reply Input Field */}
+            {showReplyInput[review.id] && (
+                    <div className="reply-input">
+                        <div className="reply-header">
+                            <label htmlFor="review-input" className="review-input-label">Reply to..</label>
+                            <button className="close-reply-btn" onClick>
+                                CANCEL REPLY
+                            </button>
+                        </div>
+                       
+        <textarea
+                id="review-input"
+                placeholder="Leave a reply..."
+                className="review-input-field"
+                value={newReview.text}
+                onChange={(e) => setNewReview({ ...newReview, text: e.target.value })}
+            ></textarea>
+            <button onClick={handleReviewSubmit}>Post Reply</button>
+                    </div>
+                )}
+            </div>
+            </div>
+        ))}
+    </>
+)}
+        </div>
+
+        {/* Right Side - Submit Review Form */}
+        <div className="review-form">
+        <label htmlFor="review-input" className="review-input-label">Reviews</label>
+        <textarea
+                id="review-input"
+                placeholder="Leave a review..."
+                className="review-input-field"
+                value={newReview.text}
+                onChange={(e) => setNewReview({ ...newReview, text: e.target.value })}
+            ></textarea>
+            <button onClick={handleReviewSubmit}>Post Review</button>
+        </div>
+    </div>
+</div>
+
             </div>
             <div className="movie-info-right">
             {/* <MovieSection title="Movies in Theaters" movies={moviesInTheaters} /> */}
-            
+                    <h2>Similar Movies</h2>
+            <div className="similar-movie-list">
+                {similarMovies.length > 0 ? (
+                    similarMovies.map(similar => (
+                        <MovieCard key={similar.id} movie={similar} variant="similar" />
+                    ))
+                ) : (
+                    <p>No similar movies found.</p>
+                )}
             </div>
-
-            
-
-
+            </div>
            </div>
-
-            
         </div>
     );
 }

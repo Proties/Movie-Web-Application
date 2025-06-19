@@ -57,7 +57,7 @@
   
   /* Positioning */
   .scroll-button.left {
-    left: opx;
+    left: 2px;
   }
   
   .scroll-button.right {

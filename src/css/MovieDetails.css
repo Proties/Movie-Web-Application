@@ -1,5 +1,4 @@
 /* MovieDetails.css */
-
 .movie-details {
     background: black;
     color: white;
@@ -64,6 +63,10 @@
     padding: 215px;
   }
 
+  .MovieDetails-favorite-btn {
+    position: inherit;
+  }
+
   .movie-poster {
     max-height: 85vh;
     border-radius: 10px;
@@ -82,26 +85,63 @@
     justify-content: center;
     gap: 10px;
     margin-top: 20px;
+    position: initial;
 }
 
 .movie-actions button {
+    background: none;
+    border: none;
+    /* padding: 0.5rem; */
+    cursor: pointer;
+    transition: transform 9s ease-in-out;
     background: #333;
     color: white;
-    border: none;
     padding: 10px 15px;
     border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s;
+    position: initial;
+    height: 3.5vh;
+    width: 2vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .movie-actions button:hover {
-    background: #555;
+    background: #000000;
 }
 
-.liked { background: #28a745 !important; }
-.disliked { background: #dc3545 !important; }
-.favorited { background: #ffc107 !important; color: black; }
+.movie-actions button:focus {
+    background: #000000;
+}
 
+/* Default styles for like/dislike images */
+.like img {
+  filter: brightness(0) invert(1);
+  transition: filter 0.3s ease-in-out;
+  width: 1.5vw;
+  height: 2vh;
+}
+
+.dislike img {
+  filter: brightness(0) invert(1);
+  transition: filter 0.3s ease-in-out;
+  width: 1.5vw;
+  height: 2vh;
+}
+
+/* When hovered or focused */
+.like:hover img,
+.like:focus img,
+.dislike:hover img,
+.dislike:focus img {
+    filter: brightness(1.5);
+}
+
+/* If button is active (liked or disliked), show colored image */
+.liked img,
+.disliked img {
+    filter: brightness(1.5);
+}
 
 
 /* Movie Info */
@@ -113,12 +153,14 @@
     width: 50vw;
     gap: 35px;
     padding: 20px;
+    border-right: 2px solid #333;
+    border-left: 2px solid #333;
 }
 
 .movie-detail-info-container {
     display: flex;
     flex-direction: row;
-    gap: 125px;
+    position: relative;
 }
 
 .movie-info-center h1 {
@@ -141,6 +183,8 @@
   display: flex;
   gap: 30px;
   margin-bottom: 35px;
+  position: absolute;
+  right: 0;
   }
 
 /* Cast Section */
@@ -175,57 +219,516 @@
     margin-top: 5px;
     width: auto;
 }
-
-/* Reviews Section */
 .reviews-section {
-    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    padding: 1rem;
     border-top-style: solid;
     border-top-width: thin;
     color: white;
 }
 
 .reviews-section h2 {
-    text-align: center;
-    margin-bottom: 15px;
+color:#4B9830;
+text-align: start;
+}
+
+.reviews-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.existing-reviews {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.review-count {
+    margin-bottom: 10px;
     text-align: start;
-    margin-bottom: 15px;
+    font-size: 20px;
+    color: #4B9830;
+    font-weight: bold;
+}
+
+.review-container {
+    display: flex;
+  flex-direction: column;
+}
+
+.review-card {
+    border: 5px solid #4B9830;
+    padding: 16px;
+    background-color: #AEAEAE;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.review-details-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.User-gravatar-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-right: 15px;
+    height: 100%;
+}
+
+.gravatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 3px double #4B9830;
+}
+
+.review-information {
+    width: 100%;
+}
+
+
+.review-details {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
     color: #4B9830;
 }
 
-.reviews-section textarea {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #444;
-    background: #222;
-    color: white;
-    resize: none;
+.review-text {
+    margin-top: 15px;
+  font-size: 1rem;
+  text-align: start;
+  margin-bottom: 25px;
 }
 
-.reviews-section button {
-    display: block;
-    margin: 10px auto;
-    background: #4B9830;
-    color: white;
+.review-actions {
+    display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: start;
+}
+
+.like-dislike-btn-containter {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.like-dislike-btn-containter button {
+    padding: 5px 10px;
+  border: none;
+  border-radius: 11px;
+  background: black;
+  cursor: pointer;
+}
+
+.reply-btn-container {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.reply-btn-container button {
+    padding: 5px 10px;
     border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
+    border-radius: 34px;
+    background: #4B9830;
     cursor: pointer;
-    transition: 0.3s;
+    width: 8vw;
+    height: 4vh;
 }
 
-.reviews-section button:hover {
-    background: #0056b3;
+.reply-btn-container button:hover {
+    background: white;
+    color: #4B9830;
 }
 
-.reviews-section ul {
-    list-style: none;
-    padding: 0;
+.reply-input {
+    margin-top: 10px;
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+    padding: 1rem;
 }
 
-.reviews-section li {
-    background: #2a2a2a;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
+.reply-input input {
+    flex-grow: 1;
+    padding: 6px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.reply-input button {
+    padding: 0.6rem;
+  background-color: #4B9830;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  width: 8vw;
+  height: 5vh;
+  margin-top: 35px;
+
+}
+
+.reply-input .review-input-field {
+    margin-top: 50px;
+}
+
+.reply-header {
+    display: grid;
+  grid-template-columns: 1fr 0fr;
+}
+
+.reply-header button{
+    margin-top: 0px;
+    padding: 0.6rem;
+    background-color: white;
+    color: gray;
+    font-size: 12px;
+    border: solid gray;
+    border-radius: 0px;
+    cursor: pointer;
+    width: 6vw;
+    height: 4vh;
+}
+
+.replies {
+    margin-top: 40px;
+    padding-left: 20px;
+    background-color: #000000;
+    display: flex;
+    flex-direction: row;
+}
+
+.reply {
+    background-color: black;
+    border-radius: 8px;
+    padding: 8px;
+    margin-bottom: 8px;
+}
+
+
+.review-form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.review-input-label {
+    color: gray;
+  text-align: start;
+  font-weight: bold;
+}
+
+.review-form input,
+.review-form textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 15px;
+    border: solid;
+    background-color: white;
+    color: gray;
+    border-color: #4B9830;
+}
+
+.review-input-field {
+    width: 100%;
+    height: 20vh;
+    background: white;
+    color: gray;
+    border: solid #4B9830;
+    border-radius: 15px;
+    padding: 0.8rem;
+}
+
+.review-form button {
+    padding: 0.6rem;
+  background-color: #4B9830;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  width: 8vw;
+  height: 5vh;
+  margin-top: 35px;
+}
+
+.review-form button:hover {
+    background-color: white;
+    color: #4B9830;
+}
+
+.no-reviews {
+    color: #4B9830;
+    text-align: start;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 40px;
+}
+
+
+.movie-info-right {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-height: calc((415px + 40px) * 3); /* Adjust 300px to your item height */
+    overflow: hidden;
+}
+
+.similar-movie-list {
+    gap: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.movie-info-right h2 {
+    color: #4B9830;
+}
+
+@media (max-width: 1440px) {
+    .movie-poster {
+        max-height: 45vh;
+    }
+
+    .movie-info-center h1 {
+        width: 24vw;
+    }
+
+    .rating-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .movie-info-right {
+        max-height: calc((547px + 40px) * 3);
+    }
+
+    .favorite-btn.favorite-details {
+        position: inherit;
+        height: 3.5vh;
+        width: 2vw;
+      }
+
+}
+
+
+@media (max-width: 810px) {
+    .movie-info-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .movie-info-center {
+        border-right: none;
+        border-left: none;
+      }
+
+    .Left-movie-info-container {
+        border: none;
+    }
+
+    .movie-info-center h1 {
+        width: 35vw;
+      }
+
+    .movie-poster {
+        max-height: 55vh;
+        max-width: 32vw;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .movie-actions button {
+        height: 4.5vh;
+        width: 4vw;
+      }
+    
+      .movie-info-center {
+        width: auto;
+      }
+
+      .review-form button {
+        width: 15vw;
+        height: 5vh;
+      }
+
+      .review-actions {
+        gap: 15px;
+      }
+
+      .reply-btn-container button {
+        width: 15vw;
+        height: 4vh;
+      }
+
+      .movie-info-right {
+        max-height: calc((290px + 40px) * 3);
+        border-left: none;
+      }
+
+      .similar-movie-list {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+}
+
+@media (max-width: 600px) {
+
+    .reply-btn-container button {
+        width: 19vw;
+    }
+
+    .review-form button {
+        width: 19vw;
+        height: 5vh;
+      }
+
+    .movie-info-right {
+        max-height: calc((240px + 40px) * 3);
+    }
+
+    .gravatar {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        border: 3px double #4B9830;
+      }
+    
+      .reply-btn-container button {
+        width: 19vw;
+        font-size: 14px;
+        height: 7vw;
+      }
+
+      .review-form button {
+        width: 19vw;
+        height: 4vh;
+        font-size: 14px;
+      }
+
+      .like-dislike-btn-containter button {
+        font-size: 8px;
+      }
+
+      .like img {
+        height: 1vh;
+      }
+      
+      .dislike img {
+        height: 1vh;
+      }
+
+}
+
+
+@media (max-width: 412px) {
+    .movie-poster {
+        max-width: 50vw;
+    }
+
+    .movie-actions {
+        margin-top: 15px;
+    }
+
+    .movie-detail-info-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .movie-info-center h1 {
+        width: 75vw;
+      }
+      
+      .rating-container {
+        position: relative;
+    }
+
+    .reply-btn-container button {
+        width: 19vw;
+        font-size: 10px;
+        height: 7vw;
+      }
+
+      .reply-btn-container button {
+        width: 20vw;
+        font-size: 8px;
+        height: 6vw;
+      }
+
+
+      .review-form button {
+        width: 20vw;
+        height: 4vh;
+        font-size: 10px;
+      }
+
+      .like-dislike-btn-containter button {
+        font-size: 8px;
+      }
+
+      .like img {
+        height: 1vh;
+      }
+      
+      .dislike img {
+        height: 1vh;
+      }
+
+      .similar-movie-list {
+        grid-template-columns: 1fr 1fr;
+      }
+
+}
+
+
+@media (max-width: 360px) {
+    .movie-poster {
+        max-width: 50vw;
+    }
+
+    .movie-actions {
+        margin-top: 15px;
+    }
+
+    .movie-detail-info-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .movie-info-center h1 {
+        width: 75vw;
+      }
+
+      .reviews-section {
+        padding: 0px;
+      }
+
+    .rating-container {
+        position: relative;
+    }
+
+    .movie-details-btn {
+        font-size: 10px;
+    }
+
+    .favorite-btn.favorite-details {
+        height: 4.5vh;
+    }
+
+    .movie-info-right {
+      max-height: calc((215px + 40px) * 3);
+    }
 }

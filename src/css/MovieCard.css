@@ -55,7 +55,7 @@
   margin-top: auto;
   margin-bottom: auto;
   aspect-ratio: 7/11;
-  width: 100%;
+  width: 105%;
 }
 
 .movie-back-info{
@@ -69,6 +69,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   max-height: 17ch;
+  padding: 3px;
 }
 
 .movie-overlay {
@@ -152,6 +153,27 @@
 }
 
 
+.movie-card-similar .movie-info {
+  padding-top: 0px;
+  padding-bottom: 40px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.movie-card-similar .movie-info  h3{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  max-width: 10rem;
+  margin: 0 auto;
+}
+
+.movie-card-similar .movie-info  p{
+  margin-top: 5px;
+}
+
 
 @media (max-width: 1440px) {
   .movie-info h3 {
@@ -169,8 +191,8 @@
   }
 
   .movie-card-back {
-    width: 107%;
-    max-height: 38vh;
+    width: 115%;
+    max-height: 50vh;
   }
 
   .movie-details-btn {

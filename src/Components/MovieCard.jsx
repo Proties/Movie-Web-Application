@@ -4,17 +4,18 @@ import { Link } from "react-router-dom";
 import "../Css/MovieCard.css";
 import FavoriteButton from "./FavoriteButton";
 
-function MovieCard({ movie }) {
+function MovieCard({ movie, variant = "similar", expandable = true }) {
     const { addToFavorites, removeFromFavorites, isFavorite } = useMovieContext();
     const [isExpanded, setIsExpanded] = useState(false);
 
     const toggleCard = () => {
+        if (!expandable) return;
         setIsExpanded((prev) => !prev);
     };
 
     return (
         <div 
-            className={`movie-card ${isExpanded ? "expanded" : ""}`} 
+            className={`movie-card ${isExpanded ? "expanded" : ""} movie-card-${variant}`}
             onClick={toggleCard}
         >
             {!isExpanded ? (

@@ -1,6 +1,32 @@
 const API_KEY = "da8366498202fe33ff34f59b0fac0773";
 const BASE_URL = "https://api.themoviedb.org/3"
 
+
+export const getPopularTVShows = () => fetchTVByGenre("", "TV Shows"); // or use `/tv/popular`
+export const getSciFiFantasyShows = () => fetchTVByGenre(10765, "Sci-Fi & Fantasy");
+export const getAnimeShows = () => fetchTVByGenre(16, "Anime");
+export const getDramaShows = () => fetchTVByGenre(18, "Dramas");
+export const getHorrorShows = () => fetchTVByGenre("9648,10765", "Horror");
+export const getActionAdventureShows = () => fetchTVByGenre(10759, "Action & Adventure");
+export const getComedyShows = () => fetchTVByGenre(35, "Comedies");
+
+const fetchTVByGenre = async (genreId, label) => {
+    try {
+        const endpoint = genreId
+            ? `${BASE_URL}/discover/tv?api_key=${API_KEY}&with_genres=${genreId}`
+            : `${BASE_URL}/tv/popular?api_key=${API_KEY}`;
+
+        const response = await fetch(endpoint);
+        if (!response.ok) throw new Error(`Failed to fetch ${label} shows`);
+
+        const data = await response.json();
+        return data.results || [];
+    } catch (error) {
+        console.error(`Error fetching ${label}:`, error.message);
+        return [];
+    }
+};
+
 export const getPopularMovies = async () => {
     try {
         const response = await fetch(`${BASE_URL}/movie/popular?api_key=${API_KEY}`);
@@ -13,6 +39,14 @@ export const getPopularMovies = async () => {
         return [];
     }
 };
+
+/** Fetch Movies Similar to The Movie Selected */
+
+export async function getSimilarMovies(id) {
+    const res = await fetch(`${BASE_URL}/movie/${id}/similar?api_key=${API_KEY}`);
+    const data = await res.json();
+    return data.results;
+}
 
 /** Fetch Movies Currently in Theaters */
 export const getMoviesInTheaters = async () => {
