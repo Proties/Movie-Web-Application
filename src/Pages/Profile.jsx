@@ -1,4 +1,4 @@
-import '../Css/Profile.css'
+import '../css/Profile.css'
 import '../css/MovieCard.css'
 import {useMovieContext} from '../context/MovieContext'
 import MovieCard from '../Components/MovieCard'

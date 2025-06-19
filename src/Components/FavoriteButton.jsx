@@ -1,6 +1,6 @@
 import { useMovieContext } from "../context/MovieContext";
-import "../Css/MovieCard.css"; // reuse styles
-import "../Css/FavoriteButton.css";
+import "../css/MovieCard.css"; // reuse styles
+import "../css/FavoriteButton.css";
 
 function FavoriteButton({ movie, position = "inherit", variant = "card"  }) {
   const { addToFavorites, removeFromFavorites, isFavorite } = useMovieContext();

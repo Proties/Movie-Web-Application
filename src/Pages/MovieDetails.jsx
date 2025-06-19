@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getMovieDetails, getMovieTrailers, getMovieCast } from "../Services/api";
-import "../Css/MovieDetails.css";
+import "../css/MovieDetails.css";
 import { getSimilarMovies } from "../Services/api";
 import MovieCard from "../Components/MovieCard"; // Assuming you have this component
-import "../Css/MovieCard.css";
+import "../css/MovieCard.css";
 import FavoriteButton from "../Components/FavoriteButton";
 import Like from "../img/like.png"
 import Dislike from "../img/dislike.png"

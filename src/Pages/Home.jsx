@@ -15,8 +15,8 @@ import {
     getComedyShows,
     searchMovies // also needed for the search handler
 } from "../Services/api";
-import "../Css/Home.css";
-import "../Css/MovieCard.css";
+import "../css/Home.css";
+import "../css/MovieCard.css";
 import icon from "../img/icon.png";
 import characters from "../img/kopia.jpg";
 

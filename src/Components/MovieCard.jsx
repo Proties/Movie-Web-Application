@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useMovieContext } from "../context/MovieContext.jsx";
 import { Link } from "react-router-dom";
-import "../Css/MovieCard.css";
+import "../css/MovieCard.css";
 import FavoriteButton from "./FavoriteButton";
 
 function MovieCard({ movie, variant = "similar", expandable = true }) {

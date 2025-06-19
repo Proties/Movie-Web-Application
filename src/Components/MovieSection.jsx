@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import MovieCard from "./MovieCard";  // Ensure correct import path
-import "../Css/MovieSection.css";
+import "../css/MovieSection.css";
 
 function MovieSection({ title, movies }) {
     const scrollRef = useRef(null);
