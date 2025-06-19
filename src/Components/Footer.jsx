@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import "../Css/Footer.css"
+import "../css/Footer.css"
 import Icon from "../img/Icon.png"; // Import from the img folder
 import Twitter from "../img/X.png";
 import Instagram from "../img/Instagram.png";
