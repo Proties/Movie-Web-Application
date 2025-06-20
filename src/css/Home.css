@@ -8,20 +8,21 @@
 .description {
   margin-top: 20px;
   width: 37rem;
+  margin: auto;
 }
 
 .home-description {
   background-color: white;
     color: black;
-    width: 110%;
     margin: 0 auto 4rem;
     display: flex;
     text-align: center;
     height: 40ch;
     flex-direction: row;
+    justify-content: center;
     align-content: center;
     align-items: center;
-    gap: 270px;
+   gap: 45px;
     padding: 14rem;
 }
 
@@ -29,6 +30,17 @@
 
   padding: 20px;
   align-content: center;
+}
+
+.Welcome-img {
+  width: 23rem;
+  margin-bottom: 30px;
+}
+
+.icon {
+  width: 240px;
+  height: auto;
+  border-radius: 20px;
 }
 
 .search-form {

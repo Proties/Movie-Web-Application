@@ -17,8 +17,9 @@ import {
 } from "../Services/api";
 import "../css/Home.css";
 import "../css/MovieCard.css";
-import icon from "../img/icon.png";
-import characters from "../img/kopia.jpg";
+import icon from "../img/Icon.png";
+import characters from "../img/Standin.png";
+import Welcome from "../img/Review.png";
 
 function Home() {
     const [searchQuery, setSearchQuery] = useState("");
@@ -108,17 +109,17 @@ function Home() {
         <div className="home">
             <div className="home-description">
                 <div className="left-container">
-                    <img src={icon} alt="Movie App Logo" className="icon" />
+                    <img src={characters} alt="Movie App Logo" className="icon" />
                 </div>
                 <div className="center-container">
-                    <h1 className="description-header">Welcome to Movie List 🎬</h1>
+                    <img src={Welcome} alt="Welcome To Our Review" className="Welcome-img"/>
                     <p className="description">
                         Discover popular and trending movies. Use the search bar below to find your 
                         favorite movies and explore details. Stay entertained! 🍿
                     </p>
                 </div>
                 <div className="right-container">
-                <img src={characters} alt="Movie App Logo" className="icon" />
+                    <img src={icon} alt="Movie App Logo" className="icon" />
                 </div>
             </div>
 
